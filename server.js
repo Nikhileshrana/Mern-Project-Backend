@@ -35,12 +35,18 @@ const User = mongoose.model("User", userlogin);
 
 app.post("/createuser",async(req,res)=>{
 
+    try
+    {
     const{username, name, passkey} = req.body;
-
     const createuser = await User.create({
         username,name,passkey
     })
-    res.json(createuser);
+    res.send("Account Created");
+    }
+    catch(e)
+    {
+        console.log("Error Occured Data Not Saved!" , e);
+    }
 });
 
 app.get("/alluser", async (req, res) => {
