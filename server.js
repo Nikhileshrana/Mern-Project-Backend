@@ -38,7 +38,7 @@ app.get("/createuser",async(req,res)=>{
     const{username , name , passkey} = req.body;
 
     const createuser = await User.create({
-        username,name,passkey
+        username:username,name:name,passkey:passkey
     })
     res.json(createuser);
 });
