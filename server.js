@@ -42,8 +42,7 @@ app.get("/createuser",async(req,res)=>{
 app.get("/alluser", async (req, res) => {
     try {
         const displayAll = await User.find();
-        const jsonString = JSON.stringify(displayAll);
-        res.send(jsonString);
+        res.json(displayAll);
     } catch (error) {
         console.error("Error fetching all users:", error);
         res.status(500).send("Internal Server Error");
