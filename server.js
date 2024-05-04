@@ -33,7 +33,7 @@ const User = mongoose.model("User", userlogin);
 
 //API CREATIONS
 
-app.get("/createuser",async(req,res)=>{
+app.post("/createuser",async(req,res)=>{
 
     const{usernamee , namee , passkeyy} = req.body;
 
