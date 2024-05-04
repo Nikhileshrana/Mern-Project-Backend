@@ -35,10 +35,10 @@ const User = mongoose.model("User", userlogin);
 
 app.post("/createuser",async(req,res)=>{
 
-    const{usernamee , namee , passkeyy} = req.body;
+    const{username, name, passkey} = req.body;
 
     const createuser = await User.create({
-        username:usernamee,name:namee,passkey:passkeyy
+        username,name,passkey
     })
     res.json(createuser);
 });
