@@ -2,7 +2,10 @@ const express = require("express");
 const port = 3000;
 const app = express();
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json()); // Parse JSON-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
@@ -31,10 +34,11 @@ const User = mongoose.model("User", userlogin);
 //API CREATIONS
 
 app.get("/createuser",async(req,res)=>{
+
+    const{username , name , passkey} = req.body;
+
     const createuser = await User.create({
-        username : "astrodude",
-        name : "Nikhilesh Rana",
-        passkey : 123
+        username,name,passkey
     })
     res.json(createuser);
 });
