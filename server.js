@@ -16,13 +16,18 @@ const url = "mongodb+srv://nikhileshrana:Brave222@cluster0.kezpsvp.mongodb.net/?
 
 mongoose.connect(url);
 
-const userlogin = mongoose.Schema({
+const usersignup = mongoose.Schema({
     username : String , 
     name : String , 
     email : String,
     passkey : Number
 });
-const User = mongoose.model("User", userlogin);
+
+const User = mongoose.model("User", usersignup);
+
+
+
+
 
 
 //DATABASE SETUP END
