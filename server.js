@@ -43,7 +43,7 @@ app.post("/createuser",async(req,res)=>{
 
     try
     {
-    const{username, name, email, passkey} = req.body;
+    const{username, name, mail, passkey} = req.body;
     const createuser = await User.create({
         username,name,passkey,email
     })
