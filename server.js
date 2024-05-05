@@ -44,10 +44,19 @@ app.post("/createuser",async(req,res)=>{
     try
     {
     const{username, name, mail, passkey} = req.body;
+    
+    if(username=="" || name=="" || mail=="" || passkey=="")
+    {
+        res.send("Fill Out all the Details First. :)");
+    }
+    else
+    {
     const createuser = await User.create({
         username,name,passkey,mail
     })
     res.send("Account Created");
+    }
+    
     }
     catch(e)
     {
