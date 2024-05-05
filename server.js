@@ -19,7 +19,7 @@ mongoose.connect(url);
 const usersignup = mongoose.Schema({
     username : String , 
     name : String , 
-    email : String,
+    mail : String,
     passkey : Number
 });
 
@@ -45,7 +45,7 @@ app.post("/createuser",async(req,res)=>{
     {
     const{username, name, mail, passkey} = req.body;
     const createuser = await User.create({
-        username,name,passkey,email
+        username,name,passkey,mail
     })
     res.send("Account Created");
     }
