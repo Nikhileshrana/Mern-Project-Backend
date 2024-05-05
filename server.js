@@ -19,6 +19,7 @@ mongoose.connect(url);
 const userlogin = mongoose.Schema({
     username : String , 
     name : String , 
+    email : String,
     passkey : Number
 });
 const User = mongoose.model("User", userlogin);
@@ -37,17 +38,20 @@ app.post("/createuser",async(req,res)=>{
 
     try
     {
-    const{username, name, passkey} = req.body;
+    const{username, name, email, passkey} = req.body;
     const createuser = await User.create({
-        username,name,passkey
+        username,name,passkey,email
     })
     res.send("Account Created");
+    res.render("/");
     }
     catch(e)
     {
         console.log("Error Occured Data Not Saved!" , e);
     }
 });
+
+
 
 app.get("/alluser", async (req, res) => {
     try {
