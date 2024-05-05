@@ -48,7 +48,6 @@ app.post("/createuser",async(req,res)=>{
         username,name,passkey,email
     })
     res.send("Account Created");
-    res.render("/");
     }
     catch(e)
     {
