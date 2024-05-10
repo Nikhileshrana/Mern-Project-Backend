@@ -104,7 +104,7 @@ app.post("/login", async (req, res) => {
             res.cookie("name",finduser.name);
             res.cookie("mail",finduser.mail);
 
-            res.redirect("https://mern-project-frontend-chi.vercel.app/");
+            res.redirect("/");
         } 
 
     } catch (err) {
