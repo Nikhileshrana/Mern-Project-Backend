@@ -103,7 +103,7 @@ app.post("/login", async (req, res) => {
             res.cookie("passkey",finduser.passkey);
             res.cookie("name",finduser.name);
             res.cookie("mail",finduser.mail);
-
+            console.log("Sending Cookie to Client Side");
             res.redirect("https://mern-project-frontend-chi.vercel.app/");
         } 
 
