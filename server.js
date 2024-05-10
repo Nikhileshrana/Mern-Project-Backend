@@ -3,10 +3,19 @@ const port = 3000;
 const app = express();
 const cors = require("cors");
 const bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser')
 
-app.use(bodyParser.json()); // Parse JSON-encoded bodies
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(cookieParser())
+app.use(session({
+    resave:false,
+    saveUninitialized:false,
+    secret:"nikhileshranaastroverseisgreatbitch"
+}));
+
 
 
 // DATABASE SETUP
@@ -29,14 +38,6 @@ const User = mongoose.model("User", usersignup);
 
 
 
-
-//DATABASE SETUP END
-
-
-
-
-
-
 //API CREATIONS
 
 app.post("/createuser",async(req,res)=>{
@@ -54,7 +55,9 @@ app.post("/createuser",async(req,res)=>{
     const createuser = await User.create({
         username,name,passkey,mail
     })
-    res.send("Account Created");
+    if(createuser){
+    res.redirect("http://localhost:3001");
+    }
     }
     
     }
@@ -78,7 +81,7 @@ app.get("/alluser", async (req, res) => {
 
 
 app.get("/deleteone",async(req,res)=>{
-    const deleteone = await User.deleteOne({name:"Nikhilesh Rana"});
+    const deleteone = await User.deleteOne({username:"nikhilrana"});
     res.json(deleteone);
 });
 
@@ -88,9 +91,27 @@ app.get("/deleteall",async(req,res)=>{
 });
 
 
-//API CREATION ENDS HERE
+app.post("/login", async (req, res) => {
+    const { my_username, my_passkey } = req.body;
+    console.log(my_username,my_passkey);
+    try {
+        const finduser = await User.findOne({ username: my_username , passkey: my_passkey });
+        console.log("User found:", finduser.username , finduser.passkey);
+
+        if (finduser && finduser.username==my_username && finduser.passkey == my_passkey) {
+            res.cookie("username",finduser.username);
+            res.cookie("passkey",finduser.passkey);
+            res.cookie("name",finduser.name);
+            res.cookie("mail",finduser.mail);
+
+            res.redirect("http://localhost:3001");
+        } 
+
+    } catch (err) {
+        console.error(err);
+        res.redirect("http://localhost:3001/Login");
+    }
+});
 
 
-
-//LISTENING PORT HERE
 app.listen(port);
