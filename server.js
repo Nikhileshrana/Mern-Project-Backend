@@ -99,10 +99,10 @@ app.post("/login", async (req, res) => {
         console.log("User found:", finduser.username , finduser.passkey);
 
         if (finduser && finduser.username==my_username && finduser.passkey == my_passkey) {
-            res.cookie("username",finduser.username, { secure: true });
-            res.cookie("passkey",finduser.passkey, { secure: true }); 
-            res.cookie("name",finduser.name, { secure: true });
-            res.cookie("mail",finduser.mail, { secure: true });
+            res.cookie("username",finduser.username);
+            res.cookie("passkey",finduser.passkey);
+            res.cookie("name",finduser.name);
+            res.cookie("mail",finduser.mail);
             console.log("Sending Cookie to Client Side");
             res.redirect("https://mern-project-frontend-chi.vercel.app/");
         } 
