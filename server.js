@@ -56,7 +56,7 @@ app.post("/createuser",async(req,res)=>{
         username,name,passkey,mail
     })
     if(createuser){
-    res.redirect("http://localhost:3001");
+    res.redirect("https://mern-project-frontend-chi.vercel.app/");
     }
     }
     
@@ -104,12 +104,12 @@ app.post("/login", async (req, res) => {
             res.cookie("name",finduser.name);
             res.cookie("mail",finduser.mail);
 
-            res.redirect("http://localhost:3001");
+            res.redirect("https://mern-project-frontend-chi.vercel.app/");
         } 
 
     } catch (err) {
         console.error(err);
-        res.redirect("http://localhost:3001/Login");
+        res.redirect("https://mern-project-frontend-chi.vercel.app/Login");
     }
 });
 
